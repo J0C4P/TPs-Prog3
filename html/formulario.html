@@ -43,27 +43,19 @@
   </fieldset>
   <hr class="separador_form">
   <fieldset>
-    <legend>Datos del participante</legend>
-    <label for="apellido-nombre">
-      Apellido y Nombre:
-    </label>
+    <legend>Cantidad De Participantes</legend>
+    <label for="cantidadParticipantes">Cantidad de participantes:</label>
+    <input type="number" id="cantidadParticipantes" name="cantidad-participantes" min="1" max="10" value="1">
+    <button type="button" id="confirmarParticipantes">Agregar Participante</button>
     <br>
-    <input type="text" id="apellido-nombre" name="apellido-nombre" maxlength="100" required>
-    <br>
-    <label for="DNI">
-      DNI:
-    </label>
-    <br>
-    <input type="text" id="DNI" name="DNI" required>
-    <span class="error" id="error-DNI"></span>
-    <br>
-    <label for="fecha-nacimiento">
-      Fecha de nacimiento:
-    </label>
-    <br>
-    <input type="date" id="fecha-nacimiento" name="fecha-nacimiento">
-    <span class="error" id="error-fecha-nacimiento"></span>
-    <br>
+    <span class="error" id="error-participantes"></span>
+  </fieldset>
+  <hr class="separador_form">
+  <!-- Los datos de cada participante se generan dinámicamente desde participantes.js -->
+  <div id="participantes"></div>
+  <hr>
+  <fieldset>
+    <legend>Datos de contacto</legend>
     <label for="correo-electronico">
       Correo electrónico:
     </label>
@@ -75,36 +67,10 @@
     </label>
     <br>
     <input type="text" id="telefono" name="telefono">
-    <br>
-    <label for="sexo">
-      Sexo:
-    </label>
-    <br>
-    <select id="sexo" name="sexo">
-      <option value="masculino">Masculino</option>
-      <option value="femenino">Femenino</option>
-      <option value="no-binario">No binario</option>
-    </select>
-    <br>
   </fieldset>
   <hr>
   <fieldset>
     <legend>Información deportiva</legend>
-    <label for="nivel">Nivel:</label>
-    <br>
-    <select id="nivel" name="nivel">
-      <option value="inicial">
-        Inicial
-      </option>
-      <option value="intermedio">
-        Intermedio
-      </option>
-      <option value="avanzado">
-        Avanzado
-      </option>
-    </select>
-    <br>
-    <br>
     <label for="experiencia-s">¿Posee experiencia previa?:</label>
     <input type="radio" id="experiencia-s" name="experiencia" value="si">Sí
     <input type="radio" id="experiencia-n" name="experiencia" value="no">No
@@ -137,38 +103,6 @@
     <p>Deportes Unca – 2026</p>
   </footer>
   <!-- Scripts -->
-  <script>
-    const formulario = document.getElementById('formulario');
-    const errorDNI = document.getElementById('error-DNI');
-    const errorFechaNacimiento = document.getElementById('error-fecha-nacimiento');
-
-    formulario.addEventListener('submit', function(event){
-      event.preventDefault();
-      const dni = document.getElementById('DNI').value;
-      const fechaNacimiento = document.getElementById('fecha-nacimiento').value;
-
-      let formularioValido = true;
-
-      console.log('DNI ingresado:', dni,  'Valido?', documentoValido(dni));
-
-      if (documentoValido(dni)) {
-        errorDNI.textContent = '';
-      }else{
-        errorDNI.textContent = 'El DNI ingresado no es válido. Debe contener 8 dígitos.';
-        formularioValido = false;
-      }
-      if (fechaNacimientoValida(fechaNacimiento)) {
-        errorFechaNacimiento.textContent = '';
-      }else{
-        errorFechaNacimiento.textContent = 'La fecha de nacimiento ingresada no es válida. Debe ser una fecha anterior a la actual.';
-        formularioValido = false;
-      }
-
-      if (formularioValido) {
-        formulario.submit();
-      }
-    });
-
-  </script>
+  <script src="../participantes.js"></script>
 </body>
 </html>
