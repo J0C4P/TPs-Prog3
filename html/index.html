@@ -47,33 +47,7 @@
     <p>Deportes Unca – 2026</p>
   </footer>
 
-  <script>
-    const actividades = sistemaDeportes.listarActividades();
-    const tabla = document.getElementById('tabla-actividades');
-
-    if (tabla){
-      const cuerpoTabla = document.getElementById('cuerpo-tabla');
-      actividades.forEach(actividad => {
-        const fila = document.createElement('tr');
-        
-        const celdaNombre = document.createElement('td');
-        celdaNombre.textContent = actividad.nombre;
-        const celdaLugar = document.createElement("td");
-        celdaLugar.textContent = actividad.lugar;
-        const celdaDia = document.createElement("td");
-        celdaDia.textContent = actividad.dia;
-        const celdaHorario = document.createElement("td");
-        celdaHorario.textContent = actividad.horario;
-        const celdaCupo = document.createElement("td");
-        celdaCupo.textContent = actividad.cupo;
-        const celdaEstado = document.createElement("td");
-        celdaEstado.textContent = actividad.estado;
-
-        fila.append(celdaNombre, celdaLugar, celdaDia, celdaHorario, celdaCupo, celdaEstado);
-
-        cuerpoTabla.appendChild(fila);
-      });
-    }
-  </script>
+  <!-- Scripts -->
+  <script src="../tabla-actividades.js"></script>
 </body>
 </html>
