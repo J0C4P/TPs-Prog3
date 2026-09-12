@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deportes Unca - Inscripción</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="estilos.css">
+  <script src="../validaciones.js"></script>
+</head>
+<body class="container">
+  <h1>Inscripción</h1>
+
+  <hr>
+
+  <form action="pagina3.html" method="post" class="formulario" id="formulario">
+
+  <fieldset id="info_actividad">
+    <legend>Información de la actividad</legend>
+    <label for="actividad">
+      Actividad:
+    </label>
+    <br>
+    <input type="text" id="actividad" name="actividad" value="Basket" disabled>
+    <br>
+    <label for="Lugar">
+      Lugar:
+    </label>
+    <br>
+    <input type="text" id="Lugar" name="Lugar" value="Cancha de básquet del campus universitario." disabled>
+    <br>
+    <label for="Día">
+      Día:
+    </label>
+    <br>
+    <input type="text" id="Día" name="Día" value="Lunes" disabled>
+    <br>
+    <label for="Horario">
+      Horario:
+    </label>
+    <br>
+    <input type="text" id="Horario" name="Horario" value="16:00" disabled>
+  </fieldset>
+  <hr class="separador_form">
+  <fieldset>
+    <legend>Datos del participante</legend>
+    <label for="apellido-nombre">
+      Apellido y Nombre:
+    </label>
+    <br>
+    <input type="text" id="apellido-nombre" name="apellido-nombre" maxlength="100" required>
+    <br>
+    <label for="DNI">
+      DNI:
+    </label>
+    <br>
+    <input type="text" id="DNI" name="DNI" required>
+    <span class="error" id="error-DNI"></span>
+    <br>
+    <label for="fecha-nacimiento">
+      Fecha de nacimiento:
+    </label>
+    <br>
+    <input type="date" id="fecha-nacimiento" name="fecha-nacimiento">
+    <span class="error" id="error-fecha-nacimiento"></span>
+    <br>
+    <label for="correo-electronico">
+      Correo electrónico:
+    </label>
+    <br>
+    <input type="email" id="correo-electronico" name="correo-electronico">
+    <br>
+    <label for="telefono">
+      Telefono:
+    </label>
+    <br>
+    <input type="text" id="telefono" name="telefono">
+    <br>
+    <label for="sexo">
+      Sexo:
+    </label>
+    <br>
+    <select id="sexo" name="sexo">
+      <option value="masculino">Masculino</option>
+      <option value="femenino">Femenino</option>
+      <option value="no-binario">No binario</option>
+    </select>
+    <br>
+  </fieldset>
+  <hr>
+  <fieldset>
+    <legend>Información deportiva</legend>
+    <label for="nivel">Nivel:</label>
+    <br>
+    <select id="nivel" name="nivel">
+      <option value="inicial">
+        Inicial
+      </option>
+      <option value="intermedio">
+        Intermedio
+      </option>
+      <option value="avanzado">
+        Avanzado
+      </option>
+    </select>
+    <br>
+    <br>
+    <label for="experiencia-s">¿Posee experiencia previa?:</label>
+    <input type="radio" id="experiencia-s" name="experiencia" value="si">Sí
+    <input type="radio" id="experiencia-n" name="experiencia" value="no">No
+    <br>
+    <br>
+    <label for="observaciones">
+      Observaciones:
+    </label>
+    <br>
+    <textarea id="observaciones" name="observaciones" rows="5" cols="25"></textarea>
+  </fieldset>
+  <hr>
+  <fieldset>
+    <legend>Aceptación de condiciones</legend>
+    <input type="checkbox" id="condiciones" name="condiciones" required>
+    <label for="condiciones">
+        Acepto las condiciones de inscripción. (Obligatorio)
+    </label>
+  </fieldset>
+  <fieldset>
+    <input name="guardar" type="submit" value="Enviar">
+    <input name="cancelar" type="reset" value="Cancelar">
+  </fieldset>
+  </form>
+
+  <hr>
+
+  <footer>
+    <a href="index.html">Ir al Inicio</a>
+    <p>Deportes Unca – 2026</p>
+  </footer>
+  <!-- Scripts -->
+  <script>
+    const formulario = document.getElementById('formulario');
+    const errorDNI = document.getElementById('error-DNI');
+    const errorFechaNacimiento = document.getElementById('error-fecha-nacimiento');
+
+    formulario.addEventListener('submit', function(event){
+      event.preventDefault();
+      const dni = document.getElementById('DNI').value;
+      const fechaNacimiento = document.getElementById('fecha-nacimiento').value;
+
+      let formularioValido = true;
+
+      console.log('DNI ingresado:', dni,  'Valido?', documentoValido(dni));
+
+      if (documentoValido(dni)) {
+        errorDNI.textContent = '';
+      }else{
+        errorDNI.textContent = 'El DNI ingresado no es válido. Debe contener 8 dígitos.';
+        formularioValido = false;
+      }
+      if (fechaNacimientoValida(fechaNacimiento)) {
+        errorFechaNacimiento.textContent = '';
+      }else{
+        errorFechaNacimiento.textContent = 'La fecha de nacimiento ingresada no es válida. Debe ser una fecha anterior a la actual.';
+        formularioValido = false;
+      }
+
+      if (formularioValido) {
+        formulario.submit();
+      }
+    });
+
+  </script>
+</body>
+</html>
