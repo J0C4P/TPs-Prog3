@@ -9,15 +9,16 @@ Plataforma web para consultar actividades deportivas e inscribirse en ellas, des
 ## Estructura del proyecto
 
 ```
-estilos.css            Hoja de estilos propia (tipografía Jost, tema oscuro)
-actividades.js         Modelo de datos de las actividades
-tabla-actividades.js   Renderiza la tabla de actividades en el DOM
-validaciones.js        Funciones de validación reutilizables
-participantes.js       Generación dinámica de participantes + validación del formulario
+estilos.css              Hoja de estilos propia (tipografía Jost, tema oscuro)
+JavaScript/
+  actividades.js         Modelo de datos de las actividades
+  tabla-actividades.js   Renderiza la tabla de actividades en el DOM
+  validaciones.js        Funciones de validación reutilizables
+  participantes.js       Generación dinámica de participantes + validación del formulario
 html/
-  index.html           Página principal: menú y tabla de actividades
-  formulario.html      Inscripción a una actividad
-  inscripciones.html   Inscripciones realizadas, con opción de cancelar
+  index.html             Página principal: menú y tabla de actividades
+  formulario.html        Inscripción a una actividad
+  inscripciones.html     Inscripciones realizadas, con opción de cancelar
 ```
 
 Los scripts siguen una convención simple: **lo que no toca el DOM se carga en el `<head>`; lo que manipula el DOM se carga al final del `<body>`**. Ninguna página tiene JavaScript embebido.
