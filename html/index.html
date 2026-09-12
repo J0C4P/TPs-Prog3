@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Deportes Unca</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="../estilos.css">
   <script src="../actividades.js"></script>
 </head>
 <body class="container">
@@ -28,19 +28,25 @@
       </nav>
       <hr>
   </header>
-  <table id="tabla-actividades">
-    <thead>
-      <tr>
-        <th>Actividad</th>
-        <th>Lugar</th>
-        <th>Día</th>
-        <th>Horario</th>
-        <th>Cupos</th>
-        <th>Estado</th>
-      </tr>
-    </thead>
-    <tbody id="cuerpo-tabla"></tbody>
-  </table>
+  <section class="container">
+    <h2>Actividades deportivas disponibles</h2>
+    <hr>
+    <div class="table-responsive">
+      <table id="tabla-actividades" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Actividad</th>
+            <th>Lugar</th>
+            <th>Día</th>
+            <th>Horario</th>
+            <th>Cupos</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpo-tabla"></tbody>
+      </table>
+    </div>
+  </section>
   <hr>
   <footer>
     <a href="#">Ir al Inicio</a>

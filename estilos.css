@@ -74,6 +74,22 @@ fieldset{
 
 input,select,textarea{
     border-radius: 0.5em;
+    max-width: 100%;
+}
+
+/*Bloques de participante generados por JavaScript*/
+fieldset.participante{
+    border: 2px dashed rgb(179, 155, 2);
+    border-radius: 1em;
+    margin-bottom: 1em;
+}
+
+/*Mensajes de validación*/
+.error{
+    display: inline-block;
+    color: rgb(255, 89, 0);
+    font-weight: 600;
+    font-size: 0.9em;
 }
 input[type="submit"],
 input[type="reset"] {
@@ -101,22 +117,25 @@ input[type="submit"]:hover {
     background-color: #51cb00;
 }
 
-/*Tabla de Inscripciones*/
+/*Tablas de actividades e inscripciones*/
 tr, th, td{
     border: 1px solid rgb(195, 62, 0);
     padding-left: 1em;
     padding-right: 1em;
 }
 
-.table-striped th,.table-striped td{
-    color: aliceblue;
+/* Variables con las que Bootstrap tematiza sus tablas: sin esto, sus colores
+   claros por defecto ganan por especificidad y el texto queda ilegible */
+.table{
+    --bs-table-color: aliceblue;
+    --bs-table-bg: rgb(26, 25, 25);
+    --bs-table-striped-color: aliceblue;
+    --bs-table-striped-bg: rgb(38, 37, 37);
+    --bs-table-border-color: rgb(195, 62, 0);
 }
 
-.table-striped th{
+.table > thead > tr > th{
     background-color: rgb(3, 3, 3);
-}
-.table-striped td{
-    background-color: rgb(26, 25, 25);
 }
 
 
