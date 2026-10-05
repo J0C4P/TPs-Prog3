@@ -1,11 +1,52 @@
 # Deportes Unca
 
-Repositorio de los trabajos prácticos de la cátedra de Programación III (UNCa). Los primeros trabajos construyen de forma incremental una plataforma web para consultar actividades deportivas e inscribirse en ellas; el último es una serie de ejercicios de Python independientes del sitio:
+Repositorio de los trabajos prácticos de la cátedra de Programación III (UNCa). Los primeros trabajos construyen de forma incremental una plataforma web para consultar actividades deportivas e inscribirse en ellas; los dos últimos pasan al lado del servidor: ejercicios de Python independientes del sitio y la creación de un proyecto Django:
 
 - **TP1** — estructura HTML5 de las páginas.
 - **TP2** — hoja de estilos y maquetado responsive con Bootstrap.
 - **TP3** (rama `Tp3-JavaScript`) — comportamiento dinámico del lado del cliente con JavaScript.
-- **TP4** (rama `Tp4-Python`, esta rama) — introducción al lenguaje Python mediante ejercicios sueltos.
+- **TP4** (rama `Tp4-Python`) — introducción al lenguaje Python mediante ejercicios sueltos.
+- **TP5** (rama `Tp5-DJango`, esta rama) — creación del proyecto Django `deportes` y de la aplicación `reservas`.
+
+## TP5 — Creación del proyecto Django
+
+El TP5 es el andamiaje inicial del backend del sitio con el framework Django: **todavía no hay modelos, vistas ni plantillas**. Lo realizado en esta rama es:
+
+1. Crear el entorno virtual `deportes` (módulo `venv`).
+2. Instalar Django (6.1.1) y crear el proyecto `deportes` con `django-admin startproject`.
+3. Configurar el intérprete del entorno virtual en el editor.
+4. Crear la aplicación `reservas` (`python manage.py startapp reservas`) y registrarla en `INSTALLED_APPS` de `settings.py`.
+5. Ejecutar el servidor de desarrollo (`python manage.py runserver`) y comprobar que responde en `http://127.0.0.1:8000/`.
+
+Consigna: [`MaterialReferencia/TP5.pdf`](MaterialReferencia/TP5.pdf). Guía de desarrollo: [`GUIA-TP5-DJANGO.md`](GUIA-TP5-DJANGO.md).
+
+```
+django/
+  deportes/                Directorio raíz del proyecto
+    manage.py              Utilidad de línea de comandos del proyecto
+    deportes/              Paquete Python del proyecto
+      settings.py          Configuración (apps instaladas, base de datos, etc.)
+      urls.py              Patrones de URL
+      asgi.py / wsgi.py    Puntos de entrada para servidores ASGI / WSGI
+    reservas/              Aplicación Django (models, views, admin, migrations)
+requirements.txt           Dependencias del entorno virtual
+```
+
+El entorno virtual (`deportes/` en la raíz) y la base `db.sqlite3` no se versionan. Base de datos: SQLite, la que Django trae por defecto.
+
+### Cómo ejecutarlo
+
+Desde la raíz del repositorio, con Python 3 instalado (en Windows):
+
+```
+python -m venv deportes
+deportes\Scripts\activate
+pip install -r requirements.txt
+cd django\deportes
+python manage.py runserver
+```
+
+Luego abrir `http://127.0.0.1:8000/` en el navegador: debe verse la página de bienvenida de Django. Es normal el aviso de migraciones sin aplicar; no forman parte de este práctico.
 
 ## TP4 — Introducción al lenguaje Python
 
@@ -55,7 +96,7 @@ Los ejercicios 1 y 3 piden datos por teclado; los ejercicios 2 y 4 se ejecutan s
 
 ## Sitio web (TP1 a TP3)
 
-El sitio sigue en el repositorio, sin cambios en esta rama. Su estructura:
+El sitio sigue en el repositorio, sin cambios en esta rama (todavía no está integrado con Django). Su estructura:
 
 ```
 estilos.css              Hoja de estilos propia (tipografía Jost, tema oscuro)
