@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import ActividadDeportiva, Horario, Inscripcion
+
+admin.site.register(ActividadDeportiva)
+admin.site.register(Horario)
+admin.site.register(Inscripcion)
