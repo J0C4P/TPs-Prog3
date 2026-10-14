@@ -1,0 +1,77 @@
+# 0. Importar los modelos
+>>> from reservas.models import ActividadDeportiva, Horario, Inscripcion
+
+# 1. Crear y guardar al menos tres actividades deportivas
+>>> a1 = ActividadDeportiva.objects.create(nombre='Futbol', descripcion='Futbol 5 recreativo', lugar='Cancha de la UNCa', cupo=20)
+>>> a2 = ActividadDeportiva.objects.create(nombre='Natacion', descripcion='Clases de natacion para adultos', lugar='Pileta Municipal', cupo=15)
+>>> a3 = ActividadDeportiva.objects.create(nombre='Voley', descripcion='Voley mixto', lugar='Gimnasio UNCa', cupo=12)
+
+# 2. Crear y guardar al menos dos horarios para una actividad
+>>> from datetime import time
+>>> h1 = Horario.objects.create(actividad=a1, dia='Lunes', hora_inicio=time(18, 0), hora_fin=time(19, 30))
+>>> h2 = Horario.objects.create(actividad=a1, dia='Miércoles', hora_inicio=time(20, 0), hora_fin=time(21, 30))
+
+# 3. Crear y guardar al menos tres inscripciones
+>>> i1 = Inscripcion.objects.create(nombre='Juan', apellido='Perez', dni='30111222', horario=h1)
+>>> i2 = Inscripcion.objects.create(nombre='Maria', apellido='Gomez', dni='32333444', horario=h1)
+>>> i3 = Inscripcion.objects.create(nombre='Luis', apellido='Diaz', dni='28555666', horario=h2)
+
+# 4. Consultar y mostrar todas las actividades deportivas
+>>> ActividadDeportiva.objects.all()
+<QuerySet [<ActividadDeportiva: Futbol>, <ActividadDeportiva: Natacion>, <ActividadDeportiva: Voley>]>
+>>> for a in ActividadDeportiva.objects.all(): print(a.id, a.nombre, a.lugar, a.cupo)
+1 Futbol Cancha de la UNCa 20
+2 Natacion Pileta Municipal 15
+3 Voley Gimnasio UNCa 12
+
+# 5. Horarios de una actividad determinada
+>>> a1.horarios.all()
+<QuerySet [<Horario: Futbol - Lunes 18:00-19:30>, <Horario: Futbol - Miércoles 20:00-21:30>]>
+>>> Horario.objects.filter(actividad=a1)
+<QuerySet [<Horario: Futbol - Lunes 18:00-19:30>, <Horario: Futbol - Miércoles 20:00-21:30>]>
+>>> for h in a1.horarios.all(): print(h.dia, h.hora_inicio, h.hora_fin)
+Lunes 18:00:00 19:30:00
+Miércoles 20:00:00 21:30:00
+
+# 6. Inscripciones en estado Activa
+>>> Inscripcion.objects.filter(estado='Activa')
+<QuerySet [<Inscripcion: Perez, Juan (Activa)>, <Inscripcion: Gomez, Maria (Activa)>, <Inscripcion: Diaz, Luis (Activa)>]>
+>>> for i in Inscripcion.objects.filter(estado='Activa'): print(i.apellido, i.nombre, i.estado)
+Perez Juan Activa
+Gomez Maria Activa
+Diaz Luis Activa
+
+# 7. Inscripciones de un horario determinado
+>>> h1.inscripciones.all()
+<QuerySet [<Inscripcion: Perez, Juan (Activa)>, <Inscripcion: Gomez, Maria (Activa)>]>
+>>> Inscripcion.objects.filter(horario=h1)
+<QuerySet [<Inscripcion: Perez, Juan (Activa)>, <Inscripcion: Gomez, Maria (Activa)>]>
+
+# 8. Modificar el cupo de una actividad
+>>> a1.cupo
+20
+>>> a1.cupo = 30
+>>> a1.save()
+>>> ActividadDeportiva.objects.get(pk=a1.pk).cupo
+30
+
+# 9. Cambiar el estado de una inscripcion de Activa a Cancelada
+>>> i = Inscripcion.objects.get(dni='32333444')
+>>> i.estado
+'Activa'
+>>> i.estado = 'Cancelada'
+>>> i.save()
+>>> Inscripcion.objects.get(dni='32333444').estado
+'Cancelada'
+>>> Inscripcion.objects.filter(estado='Cancelada')
+<QuerySet [<Inscripcion: Gomez, Maria (Cancelada)>]>
+
+# 10. Eliminar una inscripcion de la base de datos
+>>> Inscripcion.objects.count()
+3
+>>> i3.delete()
+(1, {'reservas.Inscripcion': 1})
+>>> Inscripcion.objects.count()
+2
+>>> Inscripcion.objects.all()
+<QuerySet [<Inscripcion: Perez, Juan (Activa)>, <Inscripcion: Gomez, Maria (Cancelada)>]>
