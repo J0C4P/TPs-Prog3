@@ -1,0 +1,21 @@
+{% extends 'reservas/base.html' %}
+{% block titulo %}{{ actividad.nombre }}{% endblock %}
+{% block contenido %}
+<article>
+  <h2>{{ actividad.nombre }}</h2>
+  <p>{{ actividad.descripcion }}</p>
+  <dl>
+    <dt>Lugar</dt><dd>{{ actividad.lugar }}</dd>
+    <dt>Cupo</dt><dd>{{ actividad.cupo }}</dd>
+  </dl>
+  <h3>Horarios</h3>
+  <ul>
+    {% for h in actividad.horarios.all %}
+    <li>{{ h.dia }} {{ h.hora_inicio|time:"H:i" }} – {{ h.hora_fin|time:"H:i" }}</li>
+    {% empty %}
+    <li>Sin horarios cargados.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'reservas:lista_actividades' %}">← Volver al listado</a>
+</article>
+{% endblock %}

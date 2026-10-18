@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Deportes Unca{% endblock %}</title>
+</head>
+<body>
+  <header>
+    <h1>Deportes Unca</h1>
+    <nav>
+      <a href="{% url 'reservas:lista_actividades' %}">Actividades</a> |
+      <a href="{% url 'reservas:agregar_actividad' %}">Agregar actividad</a>
+    </nav>
+  </header>
+
+  {% if messages %}
+  <section aria-label="Mensajes">
+    <ul>
+      {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <main>{% block contenido %}{% endblock %}</main>
+
+  <footer><p>Deportes Unca – 2026</p></footer>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{% extends 'reservas/base.html' %}
+{% block titulo %}Agregar actividad{% endblock %}
+{% block contenido %}
+<h2>Registrar actividad deportiva</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Guardar</button>
+</form>
+{% endblock %}

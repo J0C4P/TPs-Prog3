@@ -1,0 +1,14 @@
+{% extends 'reservas/base.html' %}
+{% block titulo %}Actividades{% endblock %}
+{% block contenido %}
+<h2>Actividades deportivas</h2>
+{% for actividad in actividades %}
+<article>
+  <h3><a href="{% url 'reservas:detalle_actividad' actividad.id %}">{{ actividad.nombre }}</a></h3>
+  <p>{{ actividad.descripcion }}</p>
+  <p>Lugar: {{ actividad.lugar }} · Cupo: {{ actividad.cupo }}</p>
+</article>
+{% empty %}
+<p>No hay actividades registradas.</p>
+{% endfor %}
+{% endblock %}
