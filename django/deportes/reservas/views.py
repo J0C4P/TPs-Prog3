@@ -1,10 +1,12 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import permission_required
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import ActividadDeportivaForm
 from .models import ActividadDeportiva
 
 
+@permission_required('reservas.add_actividaddeportiva', raise_exception=True)
 def agregar_actividad(request):
     if request.method == 'POST':
         form = ActividadDeportivaForm(request.POST)
